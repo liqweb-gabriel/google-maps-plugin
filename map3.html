@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Pinned Google Map</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Custom styles for the map container */
+      #map {
+        width: 100%;
+        /* 80vh ensures it takes up most of the viewport height */
+        height: 80vh;
+        border-radius: 0.5rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+      /* Style the body/html for full height and font */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 flex items-center justify-center p-4 min-h-full">
+    <div class="w-80 max-w-7xl mx-auto p-4 bg-white rounded-xl shadow-2xl">
+      <h1 class="text-3xl font-extrabold text-gray-900 mb-2">
+        Global Landmarks Explorer
+      </h1>
+      <p class="text-gray-500 mb-6">
+        Explore key locations marked with custom icons.
+      </p>
+
+      <!-- The Map Container -->
+      <div id="map"></div>
+    </div>
+
+    <script>
+      // Define the locations and their custom icon paths using 'var' for wider compatibility
+      var locations = [
+        {
+          position: { lat: 43.7183585, lng: -79.4558835 }, // Dufferin
+          title: "401Gold Dufferin",
+          icon: "401gold-map-marker.svg",
+          address: "3200 Dufferin St Unit 19B, North York, ON M6A 3B2",
+        },
+        {
+          position: { lat: 43.7788456, lng: -79.3081644 }, // Warden
+          title: "401Gold Warden",
+          icon: "401gold-map-marker.svg",
+          address: "2190 Warden Ave. Unit G5, Toronto, ON M1T 1V6",
+        },
+      ];
+
+      /**
+       * Initializes and displays the map.
+       * This function is called by the Google Maps API loader script.
+       */
+      function initMap() {
+        var isMobile = window.innerWidth < 768;
+        var iconSize = isMobile ? 32 : 64; // Size in pixels (32 or 64)
+        var iconAnchor = iconSize / 2; // Anchor point is half the size (16 or 32)
+        var iconSizeString = iconSize + "x" + iconSize;
+        var iconAnchorPoint = new google.maps.Point(iconAnchor, iconAnchor);
+
+        // Create the map object
+        var map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 15, // Low zoom to show all global locations
+          center: { lat: 43.6532, lng: -79.3832 }, // Starting center,
+          fullscreenControl: false,
+          streetViewControl: false,
+          styles: [
+            {
+              featureType: "poi",
+              stylers: [{ visibility: "off" }],
+            },
+          ],
+        });
+        var bounds = new google.maps.LatLngBounds();
+
+        // Create an InfoWindow to display content when a marker is clicked
+        var infoWindow = new google.maps.InfoWindow();
+
+        // Loop through the locations array and place a custom marker for each
+        locations.forEach(function (location) {
+          // Define the custom icon properties
+          var customIcon = {
+            url: location.icon,
+            // The icon size and anchor point
+            size: new google.maps.Size(iconSize, iconSize),
+            scaledSize: new google.maps.Size(iconSize, iconSize),
+            origin: new google.maps.Point(0, 0),
+            anchor: iconAnchorPoint,
+          };
+
+          // Create the marker
+          var marker = new google.maps.Marker({
+            position: location.position,
+            map: map,
+            title: location.title,
+            icon: customIcon,
+          });
+
+          bounds.extend(location.position);
+
+          // Add a click listener to the marker to show the InfoWindow
+          marker.addListener("click", function () {
+            infoWindow.setContent(
+              '<div class="text-gray-800">' +
+                '<h3 class="font-bold text-lg">' +
+                location.title +
+                "</h3>" +
+                "<p>" +
+                location.address +
+                "</p>" +
+                "</div>"
+            );
+            infoWindow.open(map, marker);
+          });
+        });
+
+        map.fitBounds(bounds);
+      }
+
+      // Global function reference required by the Google Maps API loader
+      window.initMap = initMap;
+    </script>
+
+    <!-- Load the Google Maps API Script -->
+    <!-- Replace 'YOUR_GOOGLE_MAPS_API_KEY' with your actual API key -->
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcfhGLcyt2UddZ47WoAfxvrQupgFRENWQ&callback=initMap"
+    ></script>
+  </body>
+</html>

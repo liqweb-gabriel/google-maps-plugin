@@ -96,13 +96,15 @@ function ozy_google_map_shortcode($atts) {
                 'position' => array('lat' => 43.7183585, 'lng' => -79.4558835),
                 'title' => '401Gold Dufferin',
                 'icon_mobile' => plugin_dir_url(__FILE__) . 'assets/401gold-map-marker.svg',
-                'icon_desktop' => plugin_dir_url(__FILE__) . 'assets/401gold-map-marker.svg'
+                'icon_desktop' => plugin_dir_url(__FILE__) . 'assets/401gold-map-marker.svg',
+                'address' => '3200 Dufferin St Unit 19B, North York, ON M6A 3B2'
             ),
             array(
                 'position' => array('lat' => 43.7788456, 'lng' => -79.3081644),
                 'title' => '401Gold Warden',
                 'icon_mobile' => plugin_dir_url(__FILE__) . 'assets/401gold-map-marker.svg',
-                'icon_desktop' => plugin_dir_url(__FILE__) . 'assets/401gold-map-marker.svg'
+                'icon_desktop' => plugin_dir_url(__FILE__) . 'assets/401gold-map-marker.svg',
+                'address' => '2190 Warden Ave. Unit G5, Toronto, ON M1T 1V6'
             )
         )
     );
