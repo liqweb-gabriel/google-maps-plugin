@@ -109,11 +109,7 @@ function ozy_google_map_shortcode($atts) {
     wp_localize_script('ozy-google-maps-script', 'map_data', $data_to_pass);
 
     // Return the HTML for the map container
-    return '<div class="w-full max-w-7xl mx-auto p-4 bg-white rounded-xl shadow-2xl">
-                <h1 class="text-3xl font-extrabold text-gray-900 mb-2">Global Landmarks Explorer</h1>
-                <p class="text-gray-500 mb-6">Explore key locations marked with custom icons.</p>
-                <div id="map"></div>
-            </div>';
+    return '<div id="map"></div>';
 }
 add_shortcode('google_map', 'ozy_google_map_shortcode');
 
