@@ -95,14 +95,14 @@ function ozy_google_map_shortcode($atts) {
             array(
                 'position' => array('lat' => 43.7183585, 'lng' => -79.4558835),
                 'title' => '401Gold Dufferin',
-                'icon_mobile' => 'https://placehold.co/32x32/ff0000/ffffff?text=D',
-                'icon_desktop' => 'https://placehold.co/64x64/ff0000/ffffff?text=D'
+                'icon_mobile' => plugin_dir_url(__FILE__) . 'assets/401gold-map-marker.svg',
+                'icon_desktop' => plugin_dir_url(__FILE__) . 'assets/401gold-map-marker.svg'
             ),
             array(
                 'position' => array('lat' => 43.7788456, 'lng' => -79.3081644),
                 'title' => '401Gold Warden',
-                'icon_mobile' => 'https://placehold.co/32x32/0000ff/ffffff?text=W',
-                'icon_desktop' => 'https://placehold.co/64x64/0000ff/ffffff?text=W'
+                'icon_mobile' => plugin_dir_url(__FILE__) . 'assets/401gold-map-marker.svg',
+                'icon_desktop' => plugin_dir_url(__FILE__) . 'assets/401gold-map-marker.svg'
             )
         )
     );
