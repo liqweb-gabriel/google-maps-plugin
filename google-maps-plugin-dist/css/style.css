@@ -1,0 +1,14 @@
+/* Custom styles for the map container */
+#map {
+    width: 100%;
+    /* 80vh ensures it takes up most of the viewport height */
+    height: 80vh; 
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+/* Style the body/html for full height and font */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
