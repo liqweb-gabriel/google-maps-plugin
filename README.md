@@ -8,7 +8,7 @@ To display the default map, simply use the following shortcode in your WordPress
 
 [google_map]
 
-You can also specify a map mode using the mode attribute:
+You can also specify a map mode using the mode attribute :
 
 [google_map mode="default"] - Displays the default map with predefined locations.
 [google_map mode="geolocation"] - (Assuming this mode is implemented) Displays a map centered on the user's current geolocation.
